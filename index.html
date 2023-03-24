@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style/style.css">
+    <meta charset="UTF-8">
+    <title>График</title>
+</head>
+<body>
+<script src="scriptJS/createTable.js"></script>
+<script src="scriptJS/getData.js"></script>
+<script src="scriptJS/settingsChekbox.js"></script>
+
+Дата отгрузки от : <input class="form-control" id="from" type="date"> до : <input class="form-control" id="to" type="date">
+<input class="form-control" onclick="funonload(url);" id="name" type="button" placeholder="asd" value="Обновить">
+<br>
+<div>
+    <h1 class="title">
+        График производства
+    </h1>
+</div>
+<div>
+    <table id="table" border="1" align="center"
+           cellpadding="4" cellspacing="0" class="table">
+        <thead>
+        <tr bgcolor>
+            <th class ='id'>id</th>
+            <th>Совмещщеный<wbr>паспорт</th>
+            <th>Заказчик</th>
+            <th>Дата отгрузки</th>
+            <th>Эффективность</th>
+            <th>Ширина</th>
+            <th>Материал</th>
+            <th>Кол. план штук</th>
+            <th>Сколько штук<wbr>осталось</th>
+            <th>Принять</th>
+        </tr>
+        </thead>
+        <tbody id="tbd">
+
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
+<script>
+    const url  = 'http://h202142752.nichost.ru/local/production_schedule/scr/index.php'
+    let dateFrom = document.getElementById("from").value;
+    let dateTo = document.getElementById("to").value;
+    s = " ";
+    s = s.replace(/^\s+|\s+$/g, '');
+    if(dateFrom == s){dateFrom = " "}
+    if(dateTo == s){dateTo = " "}
+    window.onload = funonload(url,dateFrom,dateTo);
+
+    // сортировка
+    /*    document.addEventListener('DOMContentLoaded', () => {
+
+            const getSort = ({ target }) => {
+                const order = (target.dataset.order = -(target.dataset.order || -1));
+                const index = [...target.parentNode.cells].indexOf(target);
+                const collator = new Intl.Collator(['en', 'ru'], { numeric: true });
+                const comparator = (index, order) => (a, b) => order * collator.compare(
+                    a.children[index].innerHTML,
+                    b.children[index].innerHTML
+                );
+
+                for(const tBody of target.closest('table').tBodies)
+                    tBody.append(...[...tBody.rows].sort(comparator(index, order)));
+
+                for(const cell of target.parentNode.cells)
+                    cell.classList.toggle('sorted', cell === target);
+            };
+
+            document.querySelectorAll('.table thead').forEach(tableTH => tableTH.addEventListener('click', () => getSort(event)));
+
+        });*/
+
+</script>
