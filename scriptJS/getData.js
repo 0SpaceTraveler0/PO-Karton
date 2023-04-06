@@ -1,6 +1,8 @@
-async function postData(url = '') {
+async function postData(url = '',date) {
+    const arrayBody = {'dateFrom': date[0],'dateTo': date[1]}
     const response = await fetch(url, {
         method: 'POST',
+        body: JSON.stringify(arrayBody),
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -12,8 +14,11 @@ async function postData(url = '') {
 }
 
 function funonload(url,dateFrom,dateTo) {
-    postData(url)
+    postData(url,dateFrom,dateTo)
         .then((data) => {
+            for (; document.getElementById('table').getElementsByTagName('tr').length > 1; ) {
+                document.getElementById('table').deleteRow(1);
+            }
             createTableBody(data);
         })
 }

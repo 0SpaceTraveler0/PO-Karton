@@ -1,11 +1,7 @@
 <?php
 require_once(__DIR__ . '/crest.php');
 require_once(__DIR__ . '/settings.php');
-if(file_get_contents("php://input")){
-    $data = json_decode( file_get_contents("php://input") );
-    $data  = json_decode(json_encode($data), true);
-    put_status_in_work($data['id_orders'],$data['flag']);
-}
+
 function  put_combinaded_passport($all_order){
     foreach ($all_order as $item){
         $listsElementGet = CRest::call('lists.element.get',[
@@ -79,6 +75,54 @@ function material_get(){
     ]);
     $all_material = $material_get['result']['L']['DISPLAY_VALUES_FORM'];
     return $all_material;
+}
+
+function upload_deal($all_order){
+    foreach ($all_order as $order){
+        $res =CRest::call('crm.deal.add', [
+            'fields' => [
+                'CATEGORY_ID' => 9,
+                'TITLE' => $order['id'].'test',
+                'UF_CRM_1676004652' => $order['name'],
+                'STAGE_ID' => 'C9:NEW',
+                'CURRENCY_ID' => 'RUB',
+                'UF_CRM_1671185143' => $order['id'], // паспорт
+                'UF_CRM_1674156116' => $order['id_other_order'], // паспорт
+                'UF_CRM_1680086866794' => $order['urgent'], // паспорт
+                'UF_CRM_1674181372' => $order['material'], //материал
+                'UF_CRM_1673504567' => $order['customer_id'], //заказщик
+                'COMPANY_ID' => $order['customer_id'], //заказщик
+                'UF_CRM_1674155969' => $order['quantity'], // колличество
+                'UF_CRM_1680087517854' => $order['main_order_quantity_widtht'], // Количество основного заказа в ширину
+                'UF_CRM_1680088113635' => $order['combined_order_quantity_widtht'], // Количество совмещенного заказа в ширину
+                'UF_CRM_1680089010545' => $order['width'], // ширина рулона
+            ],
+            'params' => ["REGISTER_SONET_EVENT" => "N"]
+
+        ]);
+        
+    }
+}
+
+function get_all_deal(){
+    $rest = CRest::call('crm.deal.list',[
+        'filter' => [
+            "CATEGORY_ID" => 9,
+            "STAGE_ID" => 'C9:NEW'
+        ],'select' => ['id'],
+        'start' => -1
+    ]);
+    return $rest['result'];
+}
+
+function delete_deal(){
+    $all_deal = get_all_deal();
+    foreach($all_deal as $deal){
+        $rest = CRest::call('crm.deal.delete',[
+            'ID' => $deal['ID']
+        ]);
+    }
+
 }
 
 function put_status_in_work($id,$flag){

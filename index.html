@@ -8,20 +8,38 @@
 <body>
 <script src="scriptJS/createTable.js"></script>
 <script src="scriptJS/getData.js"></script>
-<script src="scriptJS/settingsChekbox.js"></script>
+<!--<script src="scriptJS/settingsChekbox.js"></script>-->
 
 Дата отгрузки от : <input class="form-control" id="from" type="date"> до : <input class="form-control" id="to" type="date">
-<input class="form-control" onclick="funonload(url);" id="name" type="button" placeholder="asd" value="Обновить">
+<input class="form-control" onclick="funonload(url,checkDate());" id="name" type="button" placeholder="asd" value="Обновить">
 <br>
 <div>
     <h1 class="title">
         График производства
     </h1>
 </div>
-<div>
+<div class="table">
+    <div name="header_table">
+        <div><p>Совмещщеный<wbr> паспорт</p></div>
+        <div><p>Заказчик</p></div>
+        <div><p>Дата отгрузки</p></div>
+        <div><p>Эффективность</p></div>
+        <div><p>Ширина</p></div>
+        <div><p>840</p></div>
+        <div><p>1050</p></div>
+        <div><p>1260</p></div>
+        <div><p>1400</p></div>
+        <div><p>Материал</p></div>
+        <div><p>Кол. план штук</p></div>
+        <div><p>Сколько штук<wbr> осталось</p></div>
+        <div><p>Принять</p></div>
+    </div>
+</div>
+<!-- <div>
     <table id="table" border="1" align="center"
            cellpadding="4" cellspacing="0" class="table">
         <thead>
+
         <tr bgcolor>
             <th class ='id'>id</th>
             <th>Совмещщеный<wbr>паспорт</th>
@@ -29,6 +47,10 @@
             <th>Дата отгрузки</th>
             <th>Эффективность</th>
             <th>Ширина</th>
+            <th>840</th>
+            <th>1050</th>
+            <th>1260</th>
+            <th>1400</th>
             <th>Материал</th>
             <th>Кол. план штук</th>
             <th>Сколько штук<wbr>осталось</th>
@@ -39,20 +61,24 @@
 
         </tbody>
     </table>
-</div>
+</div> -->
 
 
 </body>
 </html>
 <script>
     const url  = 'http://h202142752.nichost.ru/local/production_schedule/scr/index.php'
-    let dateFrom = document.getElementById("from").value;
-    let dateTo = document.getElementById("to").value;
-    s = " ";
-    s = s.replace(/^\s+|\s+$/g, '');
-    if(dateFrom == s){dateFrom = " "}
-    if(dateTo == s){dateTo = " "}
-    window.onload = funonload(url,dateFrom,dateTo);
+
+    function checkDate() {
+        let dateFrom = document.getElementById("from").value;
+        let dateTo = document.getElementById("to").value;
+        s = " ";
+        s = s.replace(/^\s+|\s+$/g, '');
+        if(dateFrom == s){dateFrom = " "}
+        if(dateTo == s){dateTo = " "}
+        return [dateFrom,dateTo]
+    }
+    //window.onload = funonload(url,checkDate());
 
     // сортировка
     /*    document.addEventListener('DOMContentLoaded', () => {
