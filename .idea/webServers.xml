@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="4aa7fb8c-8577-40f7-9a31-ad98dfd3d4ee" name="po-karton (project level)" url="http://ssh.h202142752.nichost.ru">
+        <fileTransfer rootFolder="/home/h202142752/h202142752.nichost.ru/docs/local/production_schedule" accessType="SFTP" host="ssh.h202142752.nichost.ru" port="22" sshConfigId="43ab30f2-b475-47f4-83dc-899f31774067" sshConfig="h202142752@ssh.h202142752.nichost.ru:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

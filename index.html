@@ -18,24 +18,8 @@
         График производства
     </h1>
 </div>
-<div class="table">
-    <div name="header_table">
-        <div><p>Совмещщеный<wbr> паспорт</p></div>
-        <div><p>Заказчик</p></div>
-        <div><p>Дата отгрузки</p></div>
-        <div><p>Эффективность</p></div>
-        <div><p>Ширина</p></div>
-        <div><p>840</p></div>
-        <div><p>1050</p></div>
-        <div><p>1260</p></div>
-        <div><p>1400</p></div>
-        <div><p>Материал</p></div>
-        <div><p>Кол. план штук</p></div>
-        <div><p>Сколько штук<wbr> осталось</p></div>
-        <div><p>Принять</p></div>
-    </div>
-</div>
-<!-- <div>
+
+ <div>
     <table id="table" border="1" align="center"
            cellpadding="4" cellspacing="0" class="table">
         <thead>
@@ -47,13 +31,12 @@
             <th>Дата отгрузки</th>
             <th>Эффективность</th>
             <th>Ширина</th>
-            <th>840</th>
-            <th>1050</th>
-            <th>1260</th>
-            <th>1400</th>
             <th>Материал</th>
             <th>Кол. план штук</th>
-            <th>Сколько штук<wbr>осталось</th>
+            <th>Сколько штук<wbr>осталось осн.</th>
+            <th>Сколько штук<wbr>осталось сов.</th>
+            <th>Кол на листе осн</th>
+            <th>Кол на листе сов</th>
             <th>Принять</th>
         </tr>
         </thead>
@@ -61,7 +44,7 @@
 
         </tbody>
     </table>
-</div> -->
+</div>
 
 
 </body>
@@ -78,7 +61,7 @@
         if(dateTo == s){dateTo = " "}
         return [dateFrom,dateTo]
     }
-    //window.onload = funonload(url,checkDate());
+    window.onload = funonload(url,checkDate());
 
     // сортировка
     /*    document.addEventListener('DOMContentLoaded', () => {
